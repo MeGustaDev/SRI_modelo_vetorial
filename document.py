@@ -4,8 +4,7 @@ import vocabularyPreProcessing
 class Document:
     name = ""
     content = ""
-    documentVocabulary = []
-    dictTermFreq = {}
+    vocabularyList = []
     dictTF_IDF = {}
     documentNormalization = None
 
@@ -22,12 +21,10 @@ class Document:
     
     def setDictTF_IDF(self, collection):
         self.dictTF_IDF = self.getDocumentTF(collection)
-        collection.setDictTermsNi()
         collection.getTermIDF()
-        dictTermIDF = collection.dictTermsIDF.copy()
-
+        
         for term, tf in self.dictTF_IDF.items():
-            TF_IDF = float(tf) * float(dictTermIDF.get(term))
+            TF_IDF = float(tf) * float(collection.dictTermsIDF.get(term))
             self.dictTF_IDF.update({term: TF_IDF})
 
     def getDocumentTF(self, collection):

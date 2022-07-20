@@ -32,6 +32,10 @@ class DocumentsCollection:
             dict.fromkeys(self.vocabulary))  #retira duplicatas
         self.vocabulary.sort()  #organiza em ordem alfabetica
 
+    def setDocumentsTF_IDF(self):
+        for doc in self.documents_list:
+            doc.setDictTF_IDF(self)
+
     def getTermIDF(self):
         termNi_dict = self.setDictTermsNi()
         for term, ni in termNi_dict.items():
@@ -49,9 +53,6 @@ class DocumentsCollection:
                     termNi_dict.update({term: ni})
         return termNi_dict
 
-    def setDocumentsTF_IDF(self):
-        for doc in self.documents_list:
-            doc.setDictTF_IDF(self)
 
     def setDocumentsNormalization(self):
         for doc in self.documents_list:
