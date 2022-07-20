@@ -36,4 +36,4 @@ def showRankedDocuments(collection, queury):
         print(documentName, "               ", round(simDict[documentName], 4))
 
 ### main ###
-getSimilarity("/home/gusta/pythonCodes/documents", "or not to")
+getSimilarity("/home/gusta/python/ModeloVetorial/documents", "or not to")
