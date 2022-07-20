@@ -20,7 +20,10 @@ class DocumentsCollection:
             f = open(file, 'rt')
             content = f.read()
             doc = document.Document(file_name, content)
+            #seta o TF dos documentos
+            #doc.setDictTF_IDF(self)
             self.documents_list.append(doc)
+            
 
     def setDocCollectionVocabulary(self):
         for doc in self.documents_list:

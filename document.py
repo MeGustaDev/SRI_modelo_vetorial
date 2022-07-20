@@ -1,6 +1,5 @@
 import math
-import unidecode
-import string 
+import vocabularyPreProcessing
 
 class Document:
     name = ""
@@ -17,10 +16,8 @@ class Document:
         basicVocabulary = self.content.split()
         formatedVocabulary = []
         for term in basicVocabulary:
-            term = term.lower()
-            term = unidecode.unidecode(term)
-            term = term.translate(str.maketrans('', '', string.punctuation))
-            formatedVocabulary.append(term)
+            formatedTerm = vocabularyPreProcessing.termFormater(term)
+            formatedVocabulary.append(formatedTerm)
         self.vocabularyList = formatedVocabulary
     
     def setDictTF_IDF(self, collection):

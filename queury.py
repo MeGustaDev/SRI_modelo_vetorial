@@ -1,6 +1,5 @@
 import math
-import unidecode
-import string 
+import vocabularyPreProcessing
 
 class Queury:
     content = None
@@ -14,11 +13,9 @@ class Queury:
         self.content = queury
         termsList = queury.split()
         for term in termsList:
-            term = term.lower()
-            term = unidecode.unidecode(term)
-            term = term.translate(str.maketrans('', '', string.punctuation))
-            self.vocabularyList.append(term)
-            self.termsDict.update({term: 0.0})
+            formatedTerm = vocabularyPreProcessing.termFormater(term)
+            self.vocabularyList.append(formatedTerm)
+            self.termsDict.update({formatedTerm: 0.0})
 
     def getQueuryTF_IDF(self, documentSet):
         TF_dict = self.getQueuryTF()
