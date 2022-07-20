@@ -17,23 +17,20 @@ class Queury:
             self.vocabularyList.append(formatedTerm)
             self.termsDict.update({formatedTerm: 0.0})
 
-    def getQueuryTF_IDF(self, documentSet):
+    def setQueuryTF_IDF(self, documentSet):
         TF_dict = self.getQueuryTF()
         IDF_dict = self.getQueuryIDF(documentSet)
-        TF_IDF_dict = TF_dict.copy()
-        for term, tf in TF_IDF_dict.items():
+
+        for term, tf in TF_dict.items():
             TF_IDF = float(tf) * float(IDF_dict.get(term))
-            TF_IDF_dict.update({term: TF_IDF})
-        self.TF_IDF_Dict = TF_IDF_dict.copy()
-        return self.TF_IDF_Dict
+            self.TF_IDF_Dict.update({term: TF_IDF})
 
     def getQueuryTF(self):
-        queuryTermFreqDict = self.termsDict.copy()
+        queuryTermFreqDict = {}
         for term in self.vocabularyList:
             termCount = self.vocabularyList.count(term)
             queuryTermFreqDict.update({term: termCount})
         for term, freq in queuryTermFreqDict.items():
-            freq = int(freq)
             TF = 1 + math.log2(freq)
             queuryTermFreqDict.update({term: TF})
         return queuryTermFreqDict

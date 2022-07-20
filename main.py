@@ -9,7 +9,7 @@ def getSimilarity(DocumentsDirPath, userQueury):
     collection.setDocumentsNormalization()
 
     q = queury.Queury(userQueury)
-    q.getQueuryTF_IDF(collection)
+    q.setQueuryTF_IDF(collection)
     q.setNormalization()
 
     for doc in collection.documents_list:
@@ -36,4 +36,4 @@ def showRankedDocuments(collection, queury):
         print(documentName, "               ", round(simDict[documentName], 4))
 
 ### main ###
-getSimilarity("/home/gusta/python/ModeloVetorial/documents", "or not to")
+getSimilarity("/home/gusta/python/ModeloVetorial/documents", "To be is to do")
