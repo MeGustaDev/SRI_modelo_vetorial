@@ -21,7 +21,7 @@ class Document:
     
     def setDictTF_IDF(self, collection):
         self.dictTF_IDF = self.getDocumentTF(collection)
-        collection.getTermIDF()
+        collection.set_term_idf()
         
         for term, tf in self.dictTF_IDF.items():
             TF_IDF = float(tf) * float(collection.dictTermsIDF.get(term))

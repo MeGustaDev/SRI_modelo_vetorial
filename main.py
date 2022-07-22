@@ -2,11 +2,11 @@ import documentsCollection
 import queury
 
 def getSimilarity(DocumentsDirPath, userQueury):
-    collection = documentsCollection.DocumentsCollection("Coleção de Documentos dos Slides", 4,
+    collection = documentsCollection.DocumentsCollection("Coleção de Documentos dos Slides",
                                      DocumentsDirPath)
-    collection.setDocCollectionVocabulary()
-    collection.setDocumentsTF_IDF()
-    collection.setDocumentsNormalization()
+    collection.set_collection_vocabulary()
+    collection.set_tf_idf()
+    collection.set_doc_normalization()
 
     q = queury.Queury(userQueury)
     q.setQueuryTF_IDF(collection)

@@ -37,7 +37,7 @@ class Queury:
 
     def getQueuryIDF(self, documentsSet):
         queuryIDF_dict = self.termsDict.copy()
-        documentsSetTermNi_dict = documentsSet.setDictTermsNi()
+        documentsSetTermNi_dict = documentsSet.set_term_ni()
         for term in queuryIDF_dict.keys():
             ni = documentsSetTermNi_dict.get(term)
             relativeFreq = documentsSet.length / ni

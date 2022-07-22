@@ -10,40 +10,40 @@ class DocumentsCollection:
     dictTermsIDF = {}
     dictDocQueurySimilarity = {} #doc.name, sim
 
-    def __init__(self, name, length, dir_path):
+    def __init__(self, name, dir_path):
         os.chdir(dir_path)
         self.name = name
-        self.length = length
+
+        collection_length= 0
 
         for file in os.listdir():
+            collection_length += 1
             file_name = file
             f = open(file, 'rt')
             content = f.read()
             doc = document.Document(file_name, content)
-            #seta o TF dos documentos
-            #doc.setDictTF_IDF(self)
             self.documents_list.append(doc)
-            
+        self.length = collection_length
 
-    def setDocCollectionVocabulary(self):
+
+    def set_collection_vocabulary(self):
         for doc in self.documents_list:
             self.vocabulary = self.vocabulary + doc.vocabularyList
-        self.vocabulary = list(
-            dict.fromkeys(self.vocabulary))  #retira duplicatas
+        self.vocabulary = list(dict.fromkeys(self.vocabulary))  #retira duplicatas
         self.vocabulary.sort()  #organiza em ordem alfabetica
 
-    def setDocumentsTF_IDF(self):
+    def set_tf_idf(self):
         for doc in self.documents_list:
             doc.setDictTF_IDF(self)
 
-    def getTermIDF(self):
-        termNi_dict = self.setDictTermsNi()
+    def set_term_idf(self):
+        termNi_dict = self.set_term_ni()
         for term, ni in termNi_dict.items():
             relativeFreq = self.length / ni
             IDF = math.log2(relativeFreq)
             self.dictTermsIDF.update({term: IDF})
 
-    def setDictTermsNi(self):
+    def set_term_ni(self):
         termNi_dict = {}
         for term in self.vocabulary:
             ni = 0
@@ -54,11 +54,11 @@ class DocumentsCollection:
         return termNi_dict
 
 
-    def setDocumentsNormalization(self):
+    def set_doc_normalization(self):
         for doc in self.documents_list:
             doc.setDocumentNormalization()
 
-    def writeVocabularyInFile(self, dir_path, file_name):
+    def write_vocabulary(self, dir_path, file_name):
         os.chdir(dir_path)
         file = open(file_name, "w")
         for term in self.vocabulary:
